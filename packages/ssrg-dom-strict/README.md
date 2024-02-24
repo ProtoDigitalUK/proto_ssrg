@@ -1,6 +1,6 @@
-# Proto SSRG DOM
+# Proto SSRG DOM Strict
 
-SSRG DOM is responsible for turning vanilla JSX/TSX into HTML.
+SSRG DOM Strict is responsible for turning vanilla JSX/TSX into HTML. It offers a strict subset of elements and attributes that are allowed to ensure an accessible and modern web experience.
 
 ## Example
 

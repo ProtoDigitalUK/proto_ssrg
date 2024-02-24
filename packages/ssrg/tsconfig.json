@@ -1,6 +1,11 @@
 {
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"compilerOptions": {
+		"jsx": "react",
+		"jsxFactory": "jsx", 
+		"jsxFragmentFactory": "jsx.Fragment",
+
+		"outDir": "dist",
 		"module": "NodeNext",
 		"moduleResolution": "NodeNext",
 		"declaration": true,
@@ -14,6 +19,11 @@
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"strict": true,
-		"target": "ES2022"
+		"target": "ES2022",
+		"typeRoots": [
+			"@protodigital/ssrg-dom-strict/dist",
+		]
 	},
+	"include": ["src"],
+	"exclude": ["node_modules", "dist"]
 }
