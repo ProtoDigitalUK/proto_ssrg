@@ -1,6 +1,6 @@
-# Proto JSX DOM
+# Proto SSRG DOM
 
-JSX DOM is responsible for turning vanilla JSX/TSX into HTML.
+SSRG DOM is responsible for turning vanilla JSX/TSX into HTML.
 
 ## Example
 
