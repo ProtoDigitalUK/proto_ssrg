@@ -8,7 +8,11 @@ interface ButtonProps {
 
 const Button: SSRG.FC<ButtonProps> = ({ data }) => {
 	return (
-		<button type="button" ariaLabel={`Open ${data.foo} modal`}>
+		<button
+			type="button"
+			aria-label={`Open ${data.foo} modal`}
+			dfsfds-datfdf={"hi"}
+		>
 			Click me - {data.foo}
 		</button>
 	);

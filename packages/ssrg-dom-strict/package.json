@@ -7,7 +7,7 @@
 	"types": "./dist/index.d.ts",
 	"main": "dist/index.cjs",
 	"module": "dist/index.js",
-	"files": ["dist"],
+	"files": ["dist", "types"],
 	"exports": {
 		".": {
 			"import": "./dist/index.js",
@@ -18,7 +18,7 @@
 	"scripts": {
 		"build": "tsc && tsup",
 		"dev": "tsup --watch",
-        "format": "npx @biomejs/biome format --write ./src",
+		"format": "npx @biomejs/biome format --write ./src",
 		"lint": "npx @biomejs/biome lint src"
 	},
 	"devDependencies": {
