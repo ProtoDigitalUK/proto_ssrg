@@ -1,0 +1,24 @@
+{
+	"name": "@protodigital/playground",
+	"version": "0.0.0",
+	"private": false,
+	"description": "",
+	"type": "module",
+	"scripts": {
+		"start": "node --loader ts-node/esm src/index.ts",
+        "build": "tsc",
+		"lint": "npx @biomejs/biome lint src"
+	},
+	"devDependencies": {
+		"typescript": "^5.3.3",
+		"ts-node": "^10.9.1"
+	},
+    "dependencies": {
+        "@protodigital/ssrg-dom-strict": "*"
+    },
+	"author": "",
+	"license": "ISC",
+	"volta": {
+		"node": "21.3.0"
+	}
+}

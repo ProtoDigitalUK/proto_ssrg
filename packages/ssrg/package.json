@@ -16,15 +16,13 @@
 		}
 	},
 	"scripts": {
-		"start": "node --loader ts-node/esm src/index.ts",
 		"build": "tsc && tsup",
 		"dev": "tsup --watch",
 		"lint": "npx @biomejs/biome lint src"
 	},
 	"devDependencies": {
 		"tsup": "^8.0.2",
-		"typescript": "^5.3.3",
-		"ts-node": "^10.9.1"
+		"typescript": "^5.3.3"
 	},
 	"author": "",
 	"license": "ISC",

@@ -18,6 +18,7 @@
 	"scripts": {
 		"build": "tsc && tsup",
 		"dev": "tsup --watch",
+        "format": "npx @biomejs/biome format --write ./src",
 		"lint": "npx @biomejs/biome lint src"
 	},
 	"devDependencies": {

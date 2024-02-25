@@ -1,6 +1,9 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
+        "jsx": "react",
+        "jsxFactory": "SSRG.createElement",
+        "jsxFragmentFactory": "SSRG.Fragment",
         "outDir": "dist",
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
@@ -21,11 +24,13 @@
         "strict": true,
         "target": "ES2022",
         "typeRoots": [
-            "@protodigital/ssrg-dom-strict/dist",
+            "node_modules/@types",
+            "types"
         ]
     },
     "include": [
-        "src"
+        "src",
+        "types/**/*.d.ts"
     ],
     "exclude": [
         "node_modules",

@@ -1,34 +1,72 @@
-declare namespace JSX {
-	// The return type of our JSX Factory: this could be anything
-	type Element = HTMLElement;
+type ElementType = "section" | "div" | "h1" | FC<Props> | "button";
+type Props = Record<string, unknown> | null;
+type Child = HTMLElement | Text | string | number | null | boolean | Child[];
 
-	// IntrinsicElementMap grabs all the standard HTML tags in the TS DOM lib.
+export declare namespace JSX {
 	interface IntrinsicElements {
-		section: HTMLSelectElement;
-	}
-
-	// The following are custom types, not part of TS's known JSX namespace:
-	type IntrinsicElementMap = {
-		[K in keyof HTMLElementTagNameMap]: {
-			[k: string]: unknown;
+		section: {
+			class?: string;
 		};
-	};
-
-	interface Component {
-		(properties?: { [key: string]: unknown }, children?: Node[]): Node;
-	}
-
-	interface Tag {
-		(tag: string): Node;
+		h1: {
+			class?: string;
+		};
+		div: {
+			class?: string;
+		};
+		button: {
+			class?: string;
+			type: "button" | "submit" | "reset";
+			ariaLabel: string;
+		};
+		[elemName: string]: {
+			[key: string]: string;
+		};
+		// exclude default elements
+		canvas: never;
 	}
 }
 
-const jsx = (
-	tag: JSX.Tag | JSX.Component,
-	attributes: { [key: string]: unknown } | null,
-	...children: Node[]
-) => {
-	console.log("jsx", tag);
+export type FC<P> = (props: P) => string | null;
+
+const attributeLookup = {
+	ariaLabel: "aria-label",
 };
 
-export default jsx;
+const transformProps = (props: Props): string => {
+	if (!props) return "";
+
+	return Object.keys(props || {})
+		.map((key) => {
+			const value = props[key];
+			// @ts-ignore
+			const attributeName = attributeLookup[key] || key;
+			if (value !== undefined) return `${attributeName}="${value}"`;
+		})
+		.join(" ");
+};
+
+const createElement = (
+	type: ElementType,
+	props?: Props,
+	...children: Child[]
+): string | null => {
+	if (type === Fragment) {
+		return children.join("");
+	}
+
+	const propsString = transformProps(props ?? null);
+
+	const childrenString = children
+		.map((child) => (typeof child === "string" ? child : String(child)))
+		.join("");
+
+	if (typeof type === "function") {
+		return type(props || {});
+	}
+
+	return `<${type} ${propsString}>${childrenString}</${type}>`;
+};
+
+const Fragment = {};
+
+export { createElement, Fragment };
