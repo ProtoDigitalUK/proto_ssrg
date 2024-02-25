@@ -1,4 +1,6 @@
-export type ElementType = "section" | "div" | "h1" | FC<Props> | "button";
+export type FC<P> = (props: P) => string | null;
+
+export type ElementType = FC<Props> | keyof JSX.IntrinsicElements;
 export type Props = Record<string, unknown> | null;
 export type Child =
 	| HTMLElement
@@ -11,6 +13,11 @@ export type Child =
 
 export declare namespace JSX {
 	interface IntrinsicElements {
+		// catch all & web component support
+		[ele: string]: {
+			[key: string]: string;
+		};
+		// strict elements
 		section: {
 			class?: string;
 		};
@@ -24,6 +31,7 @@ export declare namespace JSX {
 			class?: string;
 			type: "button" | "submit" | "reset";
 			"aria-label": string;
+			[key: string]: string;
 		};
 		a: {
 			class?: string;
@@ -31,12 +39,27 @@ export declare namespace JSX {
 			target: string;
 			rel: string;
 		};
-		[elemName: string]: {
-			[key: string]: string;
-		};
-		// exclude default elements
-		canvas: never;
+		// depreciated elements
+		acronym: never;
+		big: never;
+		center: never;
+		dir: never;
+		font: never;
+		frame: never;
+		frameset: never;
+		image: never;
+		marquee: never;
+		menuitem: never;
+		nobr: never;
+		noembed: never;
+		noframes: never;
+		param: never;
+		plaintext: never;
+		rb: never;
+		rtc: never;
+		strike: never;
+		tt: never;
+		xmp: never;
+		// elements we dont want to support
 	}
 }
-
-export type FC<P> = (props: P) => string | null;
