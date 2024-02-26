@@ -1,6 +1,15 @@
 import type { Props } from "../types/index.js";
 
-const transformProps = (props: Props): string => {
+interface PropConfigT {
+	value: string;
+	default: boolean;
+	required: boolean;
+}
+
+const transformProps = (
+	props?: Props,
+	config?: Record<string, PropConfigT>,
+): string => {
 	if (!props) return "";
 
 	return Object.keys(props || {})

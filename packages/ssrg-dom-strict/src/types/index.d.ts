@@ -17,6 +17,10 @@ export declare namespace JSX {
 			[key: string]: string;
 		};
 		// strict elements
+		html: {
+			lang: string;
+			dir: string;
+		};
 		section: {
 			class?: string;
 		};
@@ -31,6 +35,11 @@ export declare namespace JSX {
 			type: "button" | "submit" | "reset";
 			"aria-label": string;
 			[key: string]: string;
+		};
+		img: {
+			class?: string;
+			src: string;
+			alt: string;
 		};
 		a: {
 			class?: string;
@@ -67,10 +76,8 @@ export declare namespace JSX {
 	}
 }
 
-export type RenderFn = (
-	tag: keyof JSX.IntrinsicElements,
-	props: string,
-	children: string,
-) => string;
-
-export type TemplateFn = (props: string, children: string) => string;
+export type ElementHandlerT = (config: {
+	children?: string;
+	props?: Props;
+	tag?: keyof JSX.IntrinsicElements;
+}) => string;
