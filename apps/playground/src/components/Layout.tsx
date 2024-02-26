@@ -3,9 +3,19 @@ import Hero from "./Hero.js";
 
 const Button: SSRG.FC = () => {
 	return (
-		<body>
-			<Hero />
-		</body>
+		<SSRG.Fragment>
+			<html lang="en" dir="ltr">
+				<head>
+					<title>My First SSRG App</title>
+				</head>
+				<body>
+					<>
+						<Hero />
+						<img src="https://picsum.photos/200" alt="" />
+					</>
+				</body>
+			</html>
+		</SSRG.Fragment>
 	);
 };
 
