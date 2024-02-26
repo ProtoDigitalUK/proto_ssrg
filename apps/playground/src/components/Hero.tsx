@@ -15,8 +15,11 @@ const Hero: SSRG.FC = () => {
 						data={{
 							foo: "bar",
 						}}
-						children={<SpanTest />}
-					/>
+					>
+						<SpanTest />
+						<SpanTest />
+						<SpanTest />
+					</Button>
 					<wc-proto-digital hello={"string"} />
 				</div>
 			</section>

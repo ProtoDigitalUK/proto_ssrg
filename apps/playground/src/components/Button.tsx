@@ -4,7 +4,7 @@ interface ButtonProps {
 	data: {
 		foo: string;
 	};
-	children?: SSRG.Child;
+	children?: SSRG.Children;
 }
 
 const Button: SSRG.FC<ButtonProps> = (props) => {

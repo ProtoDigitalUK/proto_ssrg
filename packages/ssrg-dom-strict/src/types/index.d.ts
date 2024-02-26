@@ -1,12 +1,14 @@
-export interface DefaultProps {
-	children?: Child;
-}
-
 export type FC<P = {}> = (props?: P) => string | null;
 
 export type ElementTag = FC<Props> | keyof JSX.IntrinsicElements;
 export type Props = Record<string, unknown> | null;
-export type Child = string | number | null | boolean | Child[];
+export type Children =
+	| string
+	| number
+	| null
+	| boolean
+	| undefined
+	| Children[];
 
 export declare namespace JSX {
 	interface IntrinsicElements {
