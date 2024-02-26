@@ -11,7 +11,11 @@ const Button: SSRG.FC = () => {
 				<body>
 					<>
 						<Hero />
-						<img src="https://picsum.photos/200" alt="" />
+						<img
+							src="https://picsum.photos/200"
+							alt=""
+							loading="eager"
+						/>
 					</>
 				</body>
 			</html>

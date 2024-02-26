@@ -1,3 +1,6 @@
+import type { DefaultPropsT } from "../elements/default.ts";
+import type { ImgElementT } from "../elements/img.ts";
+
 export type FC<P = {}> = (props?: P) => string | null;
 
 export type ElementTag = FC<Props> | keyof JSX.IntrinsicElements;
@@ -13,9 +16,7 @@ export type Children =
 export declare namespace JSX {
 	interface IntrinsicElements {
 		// catch all & web component support
-		[ele: string]: {
-			[key: string]: string;
-		};
+		[ele: string]: DefaultPropsT;
 		// strict elements
 		html: {
 			lang: string;
@@ -36,11 +37,7 @@ export declare namespace JSX {
 			"aria-label": string;
 			[key: string]: string;
 		};
-		img: {
-			class?: string;
-			src: string;
-			alt: string;
-		};
+		img: ImgElement;
 		a: {
 			class?: string;
 			href: string;
@@ -79,5 +76,5 @@ export declare namespace JSX {
 export type ElementHandlerT = (config: {
 	children?: string;
 	props?: Props;
-	tag?: keyof JSX.IntrinsicElements;
+	tag: keyof JSX.IntrinsicElements;
 }) => string;

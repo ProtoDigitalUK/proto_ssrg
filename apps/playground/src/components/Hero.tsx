@@ -20,7 +20,7 @@ const Hero: SSRG.FC = () => {
 						<SpanTest />
 						<SpanTest />
 					</Button>
-					<wc-proto-digital hello={"string"} />
+					<wc-proto-digital hello={"string"} data />
 				</div>
 			</section>
 			<div>hello</div>

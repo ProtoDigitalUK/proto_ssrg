@@ -1,16 +1,23 @@
-import type { Props } from "../types/index.js";
+import type { Props, JSX } from "../types/index.js";
 
-interface PropConfigT {
-	value: string;
-	default: boolean;
-	required: boolean;
-}
+const transformProps = (data: {
+	default?: Props;
+	props?: Props;
+	required?: string[];
+	tag: keyof JSX.IntrinsicElements;
+}): string => {
+	const props = {
+		...data.default,
+		...data.props,
+	};
 
-const transformProps = (
-	props?: Props,
-	config?: Record<string, PropConfigT>,
-): string => {
-	if (!props) return "";
+	if (data.required && data.props) {
+		for (const key of data.required) {
+			if (data.props[key] === undefined) {
+				throw new Error(`"${key}" is required for <${data.tag}>`);
+			}
+		}
+	}
 
 	return Object.keys(props || {})
 		.map((key) => {
