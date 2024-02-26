@@ -1,19 +1,11 @@
 import * as SSRG from "@protodigital/ssrg-dom-strict";
+import Button from "./Button.js";
 
-interface ButtonProps {
-	data: {
-		foo: string;
-	};
-}
-
-const Button: SSRG.FC<ButtonProps> = ({ data }) => {
-	return (
-		<button type="button" aria-label={`Open ${data.foo} modal`}>
-			Click me - {data.foo}
-		</button>
-	);
+const SpanTest: SSRG.FC = () => {
+	return <span>hello world</span>;
 };
-const Hero = () => {
+
+const Hero: SSRG.FC = () => {
 	return (
 		<>
 			<section>
@@ -23,6 +15,7 @@ const Hero = () => {
 						data={{
 							foo: "bar",
 						}}
+						children={<SpanTest />}
 					/>
 					<wc-proto-digital hello={"string"} />
 				</div>

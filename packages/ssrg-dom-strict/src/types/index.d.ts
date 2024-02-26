@@ -1,15 +1,12 @@
-export type FC<P> = (props: P) => string | null;
+export interface DefaultProps {
+	children?: Child;
+}
 
-export type ElementType = FC<Props> | keyof JSX.IntrinsicElements;
+export type FC<P = {}> = (props?: P) => string | null;
+
+export type ElementTag = FC<Props> | keyof JSX.IntrinsicElements;
 export type Props = Record<string, unknown> | null;
-export type Child =
-	| HTMLElement
-	| Text
-	| string
-	| number
-	| null
-	| boolean
-	| Child[];
+export type Child = string | number | null | boolean | Child[];
 
 export declare namespace JSX {
 	interface IntrinsicElements {
@@ -39,6 +36,10 @@ export declare namespace JSX {
 			target: string;
 			rel: string;
 		};
+		span: {
+			class?: string;
+		};
+		// custom elements
 		// depreciated elements
 		acronym: never;
 		big: never;
