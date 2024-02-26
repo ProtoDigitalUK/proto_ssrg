@@ -1,6 +1,7 @@
 import type { ElementTag, Props, Children } from "../types/index.js";
 import Fragment from "./fragment.js";
 import transformProps from "../helpers/transform-props.js";
+import render from "../helpers/render.js";
 
 const createElement = (
 	tag: ElementTag,
@@ -28,8 +29,7 @@ const createElement = (
 		})
 		.join("");
 
-	if (propsString === "") return `<${tag}>${childrenString}</${tag}>`;
-	return `<${tag} ${propsString}>${childrenString}</${tag}>`;
+	return render(tag, propsString, childrenString);
 };
 
 export default createElement;

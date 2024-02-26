@@ -1,3 +1,3 @@
-import Hero from "./components/Hero.jsx";
+import Layout from "./components/Layout.jsx";
 
-console.log(Hero());
+console.log(Layout());

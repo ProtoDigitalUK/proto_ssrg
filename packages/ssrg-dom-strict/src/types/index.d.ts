@@ -66,3 +66,11 @@ export declare namespace JSX {
 		// elements we dont want to support
 	}
 }
+
+export type RenderFn = (
+	tag: keyof JSX.IntrinsicElements,
+	props: string,
+	children: string,
+) => string;
+
+export type TemplateFn = (props: string, children: string) => string;
