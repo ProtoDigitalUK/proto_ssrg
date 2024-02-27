@@ -1,4 +1,4 @@
-export type FC<P = {}> = (props?: P) => string | null;
+export type FC<P = Record<unknown, unknown>> = (props?: P) => string | null;
 
 export type ElementTag = FC<Props> | keyof JSX.IntrinsicElements;
 export type Props = Record<string, unknown> | null;
@@ -10,25 +10,48 @@ export type Children =
 	| undefined
 	| Children[];
 
-export interface DefaultPropsT {
-	class?: string;
+// ------------------------------------------------
+// Elements Types
+export interface DefaultElement extends Partial<HTMLElement> {
 	[key: string]: unknown;
 }
-export interface ImgPropsT extends DefaultPropsT {
-	src: string;
-	alt: string;
-	loading?: "lazy" | "eager" | "auto";
+export interface ImgElement extends Partial<HTMLImageElement> {
+	src: ImgElement["src"];
+	alt: ImgElement["alt"];
 }
+export interface HtmlElement extends Partial<HTMLHtmlElement> {
+	lang: HTMLPropsT["lang"];
+	dir: HTMLPropsT["dir"];
+}
+export interface HeadElement extends Partial<HTMLHeadElement> {}
+export interface LinkElement extends Partial<HTMLLinkElement> {
+	rel: LinkPropsT["rel"];
+	href: LinkPropsT["href"];
+}
+export interface MetaElement extends Partial<HTMLMetaElement> {}
+export interface StyleElement extends Partial<HTMLStyleElement> {}
+export interface TitleElement extends Partial<HTMLTitleElement> {}
+export interface BodyElement extends Partial<HTMLBodyElement> {}
+export interface AddressElement extends Partial<HTMLBodyElement> {}
+// TODO: Add the rest of the elements
 
+// ------------------------------------------------
+// JSX
 export declare namespace JSX {
 	interface IntrinsicElements {
 		// catch all & web component support
-		[ele: string]: DefaultPropsT;
-		// strict elements
-		html: {
-			lang: string;
-			dir: string;
-		};
+		[ele: string]: DefaultElement;
+		// Document Metadata
+		html: HtmlElement;
+		head: HeadElement;
+		link: LinkElement;
+		meta: MetaElement;
+		style: StyleElement;
+		title: TitleElement;
+		// Sectioning root
+		body: BodyElement;
+		// Content sectioning
+
 		section: {
 			class?: string;
 		};
@@ -77,6 +100,7 @@ export declare namespace JSX {
 		tt: never;
 		xmp: never;
 		// elements we dont want to support
+		base: never;
 	}
 }
 

@@ -13,7 +13,7 @@ const renderElement = (config: {
 		throw new Error(`Element <${config.tag}> is not supported`);
 	}
 
-	if (elemConfig.selfClosing) {
+	if (elemConfig.tagOmission) {
 		return `<${config.tag} ${transformProps({
 			default: elemConfig.attributes?.default,
 			required: elemConfig.attributes?.required,
