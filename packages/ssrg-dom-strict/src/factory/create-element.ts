@@ -1,6 +1,6 @@
 import type { ElementTag, Props, Children } from "../types/index.js";
 import Fragment from "./fragment.js";
-import elements from "../elements/index.js";
+import renderElement from "../helpers/render-element.js";
 
 const createElement = (
 	tag: ElementTag,
@@ -24,20 +24,12 @@ const createElement = (
 		if (typeof tag === "function")
 			return props?.children ? tag(props) : tag({ ...props, children });
 
-		const elementConfig = {
+		// Parse the element based on the tag
+		return renderElement({
 			children: childrenStr,
 			props,
 			tag,
-		};
-
-		// Parse the element based on the tag
-		switch (tag) {
-			case "img":
-				return elements.img(elementConfig);
-			default: {
-				return elements.default(elementConfig);
-			}
-		}
+		});
 	} catch (e) {
 		const error = e as Error;
 		const red = "\x1b[31m";

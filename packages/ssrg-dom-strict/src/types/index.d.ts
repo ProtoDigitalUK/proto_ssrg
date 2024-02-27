@@ -1,6 +1,3 @@
-import type { DefaultPropsT } from "../elements/default.ts";
-import type { ImgElementT } from "../elements/img.ts";
-
 export type FC<P = {}> = (props?: P) => string | null;
 
 export type ElementTag = FC<Props> | keyof JSX.IntrinsicElements;
@@ -12,6 +9,16 @@ export type Children =
 	| boolean
 	| undefined
 	| Children[];
+
+export interface DefaultPropsT {
+	class?: string;
+	[key: string]: unknown;
+}
+export interface ImgPropsT extends DefaultPropsT {
+	src: string;
+	alt: string;
+	loading?: "lazy" | "eager" | "auto";
+}
 
 export declare namespace JSX {
 	interface IntrinsicElements {
