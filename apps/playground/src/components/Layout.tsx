@@ -16,6 +16,7 @@ const Button: SSRG.FC = () => {
 							alt=""
 							loading="eager"
 						/>
+						<abbr title="HyperText Markup Language">HTML</abbr>
 					</main>
 				</body>
 			</html>

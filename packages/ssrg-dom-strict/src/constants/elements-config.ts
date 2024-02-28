@@ -56,6 +56,13 @@ const elementsConfig: Record<string, ElementsConfigT> = {
 		tagOmission: true,
 		category: ["flow-content"],
 	},
+	// audio: {
+	// TODO: make preload attribute default to metadata as per spec advice
+	// },
+	// video: {
+	// TODO: make preload attribute default to metadata as per spec advice
+	// TODO: make autoplay false by default
+	// },
 	// Deprecated elements
 	acronym: {
 		enabled: false,

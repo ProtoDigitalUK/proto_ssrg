@@ -176,9 +176,304 @@ export interface BlockkQuoteElement extends Partial<HTMLQuoteElement> {
 	cite: string;
 	role?: ArialRole;
 }
-export interface DDElement extends Ommit<Partial<HTMLElement>, "role"> {}
+export interface DdElement extends Ommit<Partial<HTMLElement>, "role"> {}
 export interface DivElement extends Partial<HTMLDivElement> {
 	role?: AriaRole;
+}
+export interface DlElement extends Partial<HTMLDListElement> {
+	role?: "group" | "list" | "none" | "presentation";
+}
+export interface DtElement extends Partial<HTMLElement> {
+	role?: "listitem";
+}
+export interface FigCaptionElement extends Partial<HTMLElement> {
+	role?: "group" | "none" | "presentation";
+}
+export interface FigureElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface HrElement extends Partial<HTMLHRElement> {
+	role?: "seperator" | "presentation" | "none";
+}
+export interface LiElement extends Partial<HTMLLIElement> {
+	value?: number;
+	role?:
+		| "listitem"
+		| "menuitem"
+		| "menuitemcheckbox"
+		| "menuitemradio"
+		| "option"
+		| "none"
+		| "presentation"
+		| "radio"
+		| "separator"
+		| "tab"
+		| "treeitem";
+}
+export interface MenuElement extends Partial<HTMLMenuElement> {
+	role?:
+		| "list"
+		| "directory"
+		| "group"
+		| "listbox"
+		| "menu"
+		| "menubar"
+		| "none"
+		| "presentation"
+		| "radiogroup"
+		| "tablist"
+		| "toolbar"
+		| "tree";
+}
+export interface OlElement extends Partial<HTMLOListElement> {
+	reversed?: boolean;
+	start?: number;
+	type?: "1" | "a" | "A" | "i" | "I";
+	role?:
+		| "list"
+		| "directory"
+		| "group"
+		| "listbox"
+		| "menu"
+		| "menubar"
+		| "none"
+		| "presentation"
+		| "radiogroup"
+		| "tablist"
+		| "toolbar"
+		| "tree";
+}
+export interface PElement extends Partial<HTMLParagraphElement> {
+	role?: AriaRole;
+}
+export interface PreElement extends Partial<HTMLPreElement> {
+	role?: AriaRole;
+}
+export interface UlElement extends Partial<HTMLUListElement> {
+	role?:
+		| "list"
+		| "directory"
+		| "group"
+		| "listbox"
+		| "menu"
+		| "menubar"
+		| "none"
+		| "presentation"
+		| "radiogroup"
+		| "tablist"
+		| "toolbar"
+		| "tree";
+}
+export interface AElement extends Partial<HTMLAnchorElement> {
+	href: string;
+	target: "_blank" | "_self" | "_parent" | "_top";
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#security_and_privacy
+	rel: string;
+	download?: string;
+	hreflang?: string;
+	ping?: string;
+	referrerpolicy?:
+		| "no-referrer"
+		| "no-referrer-when-downgrade"
+		| "origin"
+		| "origin-when-cross-origin"
+		| "same-origin"
+		| "strict-origin"
+		| "strict-origin-when-cross-origin"
+		| "unsafe-url";
+	type?: string;
+	role?:
+		| "link"
+		| "button"
+		| "checkbox"
+		| "menuitem"
+		| "menuitemcheckbox"
+		| "menuitemradio"
+		| "option"
+		| "radio"
+		| "switch"
+		| "tab"
+		| "treeitem";
+}
+export interface AbbrElement extends Partial<HTMLElement> {
+	/**
+	 * Adding a title attribute lets you provide an expansion or definition.
+	 */
+	title: string;
+	role?: AriaRole;
+}
+export interface BdiElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface BdoElement extends Partial<HTMLElement> {
+	dir: "ltr" | "rtl";
+	role?: AriaRole;
+}
+export interface BrElement extends Partial<HTMLBRElement> {
+	role?: "none" | "presentation";
+}
+export interface CiteElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface DataElement extends Partial<HTMLElement> {
+	value: string;
+	role?: AriaRole;
+}
+export interface DfnElement extends Partial<HTMLElement> {
+	title?: string;
+	role?: AriaRole;
+}
+export interface EmElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface IElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface KbdElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface MarkElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface QElement extends Partial<HTMLQuoteElement> {
+	cite: string;
+	role?: AriaRole;
+}
+export interface RpElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface RtElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface RubyElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface SElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface SampElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface SmallElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface SpanElement extends Partial<HTMLSpanElement> {
+	role?: AriaRole;
+}
+export interface StrongElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface SubElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface SupElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface TimeElement extends Partial<HTMLElement> {
+	datetime: string;
+	role?: AriaRole;
+}
+export interface UElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface VarElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface WbrElement extends Partial<HTMLElement> {
+	role?: AriaRole;
+}
+export interface AreaElement extends Ommit<Partial<HTMLAreaElement>, "role"> {
+	alt: AElement["alt"];
+	coords: string;
+	download?: AElement["download"];
+	href: AElement["href"];
+	hreflang?: AElement["hreflang"];
+	ping?: AElement["ping"];
+	referrerpolicy?: AElement["referrerpolicy"];
+	rel: AElement["rel"];
+	shape: "rect" | "circle" | "poly" | "default";
+	target: AElement["target"];
+}
+export interface AudioElement extends Partial<HTMLAudioElement> {
+	autoplay?: boolean;
+	controls?: boolean;
+	controlslist?: "nodownload" | "nofullscreen" | "noremoteplayback";
+	crossorigin?: "anonymous" | "use-credentials";
+	disableremoteplayback?: boolean;
+	loop?: boolean;
+	muted?: boolean;
+	preload?: "none" | "metadata" | "auto";
+	src?: string;
+	role?: "application";
+}
+export interface ImgElement extends Partial<HTMLImageElement> {
+	alt: string;
+	loading: "lazy" | "eager" | "auto";
+	src: string;
+	crossorigin?: "anonymous" | "use-credentials";
+	decoding?: "sync" | "async" | "auto";
+	elementtiming?: string;
+	fetchpriority?: "auto" | "high" | "low";
+	height: number;
+	width: number;
+	ismap?: boolean;
+	usemap?: string;
+	referrerpolicy?:
+		| "no-referrer"
+		| "no-referrer-when-downgrade"
+		| "origin"
+		| "origin-when-cross-origin"
+		| "same-origin"
+		| "strict-origin"
+		| "strict-origin-when-cross-origin"
+		| "unsafe-url";
+	sizes?: string;
+	srcset?: string;
+	roles?:
+		| "img"
+		| "presentation"
+		| "button"
+		| "checkbox"
+		| "link"
+		| "menuitem"
+		| "menuitemcheckbox"
+		| "menuitemradio"
+		| "option"
+		| "progressbar"
+		| "scrollbar"
+		| "separator"
+		| "slider"
+		| "switch"
+		| "tab"
+		| "treeitem"
+		| "none";
+}
+export interface MapElement extends Ommit<Partial<HTMLMapElement>, "role"> {
+	name: string;
+}
+export interface TrackElement extends Ommit<Partial<HTMLTrackElement>, "role"> {
+	default?: boolean;
+	kind: "subtitles" | "captions" | "descriptions" | "chapters" | "metadata";
+	label?: string;
+	src: string;
+	srclang: string;
+}
+export interface VideoElement extends Partial<HTMLVideoElement> {
+	autoplay?: boolean;
+	controls?: boolean;
+	controlslist?: "nodownload" | "nofullscreen" | "noremoteplayback";
+	crossorigin?: "anonymous" | "use-credentials";
+	disablepictureinpicture?: boolean;
+	disableremoteplayback?: boolean;
+	height: number;
+	loop?: boolean;
+	muted?: boolean;
+	playsinline?: boolean;
+	poster: string;
+	preload?: "none" | "metadata" | "auto";
+	src?: string;
+	width: number;
+	role?: "application";
 }
 
 // ------------------------------------------------
@@ -216,29 +511,61 @@ export declare namespace JSX {
 		search: SearchElement;
 		// Text content
 		blockquote: BlockkQuoteElement;
-		dd: DDElement;
+		dd: DdElement;
 		div: DivElement;
-
+		dl: DlElement;
+		dt: DtElement;
+		figcaption: FigCaptionElement;
+		figure: FigureElement;
+		hr: HrElement;
+		li: LiElement;
+		menu: MenuElement;
+		ol: OlElement;
+		p: PElement;
+		pre: PreElement;
+		ul: UlElement;
+		// Inline text semantics
+		a: AElement;
+		abbr: AbbrElement;
+		bdi: BdiElement;
+		bdo: BdoElement;
+		br: BrElement;
+		cite: CiteElement;
+		data: DataElement;
+		dfn: DfnElement;
+		em: EmElement;
+		i: IElement;
+		kbd: KbdElement;
+		mark: MarkElement;
+		q: QElement;
+		rp: RpElement;
+		rt: RtElement;
+		ruby: RubyElement;
+		s: SElement;
+		samp: SampElement;
+		small: SmallElement;
+		span: SpanElement;
+		strong: StrongElement;
+		sub: SubElement;
+		sup: SupElement;
+		time: TimeElement;
+		u: UElement;
+		var: VarElement;
+		wbr: WbrElement;
+		// Image and multimedia
+		area: AreaElement;
+		audio: AudioElement;
+		img: ImgElement;
+		map: MapElement;
+		track: TrackElement;
+		video: VideoElement;
+		// Embedded content
 		button: {
 			class?: string;
 			type: "button" | "submit" | "reset";
 			"aria-label": string;
 			[key: string]: string;
 		};
-		img: {
-			src: string;
-			alt: string;
-		};
-		a: {
-			class?: string;
-			href: string;
-			target: string;
-			rel: string;
-		};
-		span: {
-			class?: string;
-		};
-		// custom elements
 		// depreciated elements
 		acronym: never;
 		big: never;
