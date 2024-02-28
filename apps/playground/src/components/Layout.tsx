@@ -9,14 +9,14 @@ const Button: SSRG.FC = () => {
 					<title>My First SSRG App</title>
 				</head>
 				<body>
-					<>
+					<main id={"undefined"}>
 						<Hero />
 						<img
 							src="https://picsum.photos/200"
 							alt=""
 							loading="eager"
 						/>
-					</>
+					</main>
 				</body>
 			</html>
 		</SSRG.Fragment>
