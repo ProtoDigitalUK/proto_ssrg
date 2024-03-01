@@ -19,8 +19,9 @@ export interface ElementsConfigT {
 		required?: string[];
 	};
 	tagOmission?: boolean;
+	// TODO: bellow isnt implemented yet, decide if needed
 	permittedContent?: Partial<Record<ContentCategories, string[] | true>>; // cateogry, excluded elements
-	category: ContentCategories[];
+	category?: ContentCategories[];
 }
 
 const elementsConfig: Record<string, ElementsConfigT> = {
@@ -43,7 +44,6 @@ const elementsConfig: Record<string, ElementsConfigT> = {
 		},
 		category: ["flow-content", "palpable-content"],
 	},
-	// TODO: Add the rest of the elements
 	img: {
 		enabled: true,
 		attributes: {
@@ -54,15 +54,40 @@ const elementsConfig: Record<string, ElementsConfigT> = {
 			required: ["alt"],
 		},
 		tagOmission: true,
-		category: ["flow-content"],
+		category: [
+			"flow-content",
+			"phrasing-content",
+			"embedded-content",
+			"palpable-content",
+		],
 	},
-	// audio: {
-	// TODO: make preload attribute default to metadata as per spec advice
-	// },
-	// video: {
-	// TODO: make preload attribute default to metadata as per spec advice
-	// TODO: make autoplay false by default
-	// },
+	audio: {
+		enabled: true,
+		attributes: {
+			default: {
+				preload: "metadata",
+			},
+			required: [],
+		},
+		tagOmission: true,
+		category: [
+			"flow-content",
+			"phrasing-content",
+			"embedded-content",
+			"palpable-content",
+		],
+	},
+	video: {
+		enabled: true,
+		attributes: {
+			default: {
+				preload: "metadata",
+				autoplay: "false",
+			},
+			required: [],
+		},
+		category: ["flow-content", "interactive-content", "palpable-content"],
+	},
 	// Deprecated elements
 	acronym: {
 		enabled: false,

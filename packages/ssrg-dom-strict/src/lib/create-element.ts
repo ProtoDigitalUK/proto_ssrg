@@ -12,6 +12,7 @@ const createElement = (
 		const childrenStr = children
 			.map((child) => {
 				if (Array.isArray(child)) return child.join("");
+				if (child === undefined) return "";
 				if (typeof child === "string") return child;
 				return String(child);
 			})

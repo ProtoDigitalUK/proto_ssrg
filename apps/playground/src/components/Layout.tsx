@@ -1,7 +1,11 @@
 import * as SSRG from "@protodigital/ssrg-dom-strict";
 import Hero from "./Hero.js";
 
-const Layout: SSRG.FC = () => {
+interface LayoutProps {
+	children?: SSRG.Children;
+}
+
+const Layout: SSRG.FC<LayoutProps> = (props) => {
 	return (
 		<SSRG.Fragment>
 			<html lang="en" dir="ltr">
@@ -19,6 +23,7 @@ const Layout: SSRG.FC = () => {
 							width={200}
 						/>
 						<abbr title="HyperText Markup Language">HTML</abbr>
+						{props?.children}
 					</main>
 				</body>
 			</html>

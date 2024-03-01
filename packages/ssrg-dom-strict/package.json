@@ -1,8 +1,8 @@
 {
 	"name": "@protodigital/ssrg-dom-strict",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"private": false,
-	"description": "",
+	"description": "SSRG DOM Strict is responsible for converting vanilla JSX/TSX into HTML.",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/ProtoDigitalUK/proto_ssrg/tree/master/packages/ssrg-dom-strict"
@@ -11,7 +11,18 @@
 	"types": "./dist/index.d.ts",
 	"main": "dist/index.cjs",
 	"module": "dist/index.js",
-	"files": ["dist", "types"],
+	"files": [
+		"dist",
+		"types"
+	],
+	"tags": [
+		"ssr",
+		"strict",
+		"html",
+		"jsx",
+		"tsx",
+		"accessibility"
+	],
 	"exports": {
 		".": {
 			"import": "./dist/index.js",
@@ -26,6 +37,7 @@
 		"lint": "npx @biomejs/biome lint src"
 	},
 	"devDependencies": {
+		"@types/node": "^20.11.24",
 		"tsup": "^8.0.2",
 		"typescript": "^5.3.3"
 	},
@@ -33,5 +45,8 @@
 	"license": "MIT",
 	"volta": {
 		"node": "21.3.0"
+	},
+	"dependencies": {
+		"dotenv": "^16.4.5"
 	}
 }
