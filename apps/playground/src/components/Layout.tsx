@@ -1,7 +1,7 @@
 import * as SSRG from "@protodigital/ssrg-dom-strict";
 import Hero from "./Hero.js";
 
-const Button: SSRG.FC = () => {
+const Layout: SSRG.FC = () => {
 	return (
 		<SSRG.Fragment>
 			<html lang="en" dir="ltr">
@@ -15,6 +15,8 @@ const Button: SSRG.FC = () => {
 							src="https://picsum.photos/200"
 							alt=""
 							loading="eager"
+							height={200}
+							width={200}
 						/>
 						<abbr title="HyperText Markup Language">HTML</abbr>
 					</main>
@@ -24,4 +26,4 @@ const Button: SSRG.FC = () => {
 	);
 };
 
-export default Button;
+export default Layout;

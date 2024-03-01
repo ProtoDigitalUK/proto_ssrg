@@ -11,7 +11,7 @@ export type Children =
 	| Children[];
 
 // ------------------------------------------------
-// Aria Attributes
+// Attributes
 export type AriaRole =
 	| "generic"
 	| "toolbar"
@@ -85,6 +85,15 @@ export type AriaRole =
 	| "timer"
 	| "alertdialog"
 	| "dialog";
+export type ReferrerPolicy =
+	| "no-referrer"
+	| "no-referrer-when-downgrade"
+	| "origin"
+	| "origin-when-cross-origin"
+	| "same-origin"
+	| "strict-origin"
+	| "strict-origin-when-cross-origin"
+	| "unsafe-url";
 
 // ------------------------------------------------
 // Elements Types
@@ -92,20 +101,73 @@ export interface DefaultElement extends Partial<HTMLElement> {
 	[key: string]: unknown;
 }
 
-export interface HtmlElement extends Omit<Partial<HTMLHtmlElement>, "role"> {
+export interface HtmlElement
+	extends Omit<Partial<HTMLHtmlElement>, ["role", "manifest", "version"]> {
 	lang: string;
 	dir: string;
+	xmlns?: string;
 }
-export interface BaseElement extends Omit<Partial<HTMLBaseElement>, "role"> {}
-export interface HeadElement extends Omit<Partial<HTMLHeadElement>, "role"> {}
-export interface LinkElement extends Omit<Partial<HTMLLinkElement>, "role"> {
-	rel: string;
-	href: string;
+export interface BaseElement extends Omit<Partial<HTMLBaseElement>, "role"> {
+	href?: string;
+	target?: "_blank" | "_self" | "_parent" | "_top";
 }
-export interface MetaElement extends Omit<Partial<HTMLMetaElement>, "role"> {}
-export interface StyleElement extends Omit<Partial<HTMLStyleElement>, "role"> {}
+export interface HeadElement
+	extends Omit<Partial<HTMLHeadElement>, ["role", "profile"]> {}
+export interface LinkElement
+	extends Omit<
+		Partial<HTMLLinkElement>,
+		["role", "blocking", "disabled", "methods", "target", "charset", "rev"]
+	> {
+	rel?: string;
+	href?: string;
+	as?: string;
+	crossorigin?: "anonymous" | "use-credentials";
+	fetchpriority?: "auto" | "high" | "low";
+	hreflang?: string;
+	imagesizes?: string;
+	imagesrcset?: string;
+	integrity?: string;
+	media?: string;
+	referrerpolicy?: ReferrerPolicy;
+	sizes?: string;
+	title?: string;
+	type?: string;
+}
+export interface MetaElement extends Omit<Partial<HTMLMetaElement>, "role"> {
+	charset?: string;
+	content?: string;
+	"http-equiv"?:
+		| "content-security-policy"
+		| "content-type"
+		| "default-style"
+		| "x-ua-compatible"
+		| "refresh";
+	name?: string;
+}
+export interface StyleElement
+	extends Omit<Partial<HTMLStyleElement>, ["role", "blocking", "type"]> {
+	media?: string;
+	nonce?: string;
+	title?: string;
+}
 export interface TitleElement extends Omit<Partial<HTMLTitleElement>, "role"> {}
-export interface BodyElement extends Omit<Partial<HTMLBodyElement>, "role"> {}
+export interface BodyElement
+	extends Omit<
+		Partial<HTMLBodyElement>,
+		[
+			"role",
+			"alink",
+			"background",
+			"bgcolor",
+			"bottommargin",
+			"leftmargin",
+			"link",
+			"rightmargin",
+			"text",
+			"topmargin",
+			"vlink",
+		]
+	> {}
 export interface AddressElement extends Partial<HTMLElement> {
 	role?: AriaRole;
 }
@@ -176,7 +238,7 @@ export interface BlockkQuoteElement extends Partial<HTMLQuoteElement> {
 	cite: string;
 	role?: ArialRole;
 }
-export interface DdElement extends Ommit<Partial<HTMLElement>, "role"> {}
+export interface DdElement extends Omit<Partial<HTMLElement>, "role"> {}
 export interface DivElement extends Partial<HTMLDivElement> {
 	role?: AriaRole;
 }
@@ -249,7 +311,8 @@ export interface PElement extends Partial<HTMLParagraphElement> {
 export interface PreElement extends Partial<HTMLPreElement> {
 	role?: AriaRole;
 }
-export interface UlElement extends Partial<HTMLUListElement> {
+export interface UlElement
+	extends Omit<Partial<HTMLUListElement>, ["compact", "type"]> {
 	role?:
 		| "list"
 		| "directory"
@@ -264,7 +327,11 @@ export interface UlElement extends Partial<HTMLUListElement> {
 		| "toolbar"
 		| "tree";
 }
-export interface AElement extends Partial<HTMLAnchorElement> {
+export interface AElement
+	extends Omit<
+		Partial<HTMLAnchorElement>,
+		["charset", "coords", "name", "rev", "shape"]
+	> {
 	href: string;
 	target: "_blank" | "_self" | "_parent" | "_top";
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#security_and_privacy
@@ -272,15 +339,7 @@ export interface AElement extends Partial<HTMLAnchorElement> {
 	download?: string;
 	hreflang?: string;
 	ping?: string;
-	referrerpolicy?:
-		| "no-referrer"
-		| "no-referrer-when-downgrade"
-		| "origin"
-		| "origin-when-cross-origin"
-		| "same-origin"
-		| "strict-origin"
-		| "strict-origin-when-cross-origin"
-		| "unsafe-url";
+	referrerpolicy?: ReferrerPolicy;
 	type?: string;
 	role?:
 		| "link"
@@ -382,17 +441,17 @@ export interface VarElement extends Partial<HTMLElement> {
 export interface WbrElement extends Partial<HTMLElement> {
 	role?: AriaRole;
 }
-export interface AreaElement extends Ommit<Partial<HTMLAreaElement>, "role"> {
-	alt: AElement["alt"];
+export interface AreaElement extends Omit<Partial<HTMLAreaElement>, "role"> {
+	alt: string;
 	coords: string;
-	download?: AElement["download"];
-	href: AElement["href"];
-	hreflang?: AElement["hreflang"];
-	ping?: AElement["ping"];
-	referrerpolicy?: AElement["referrerpolicy"];
-	rel: AElement["rel"];
+	download?: string;
+	href: string;
+	hreflang?: string;
+	ping?: string;
+	referrerpolicy?: ReferrerPolicy;
+	rel: string;
 	shape: "rect" | "circle" | "poly" | "default";
-	target: AElement["target"];
+	target: "_blank" | "_self" | "_parent" | "_top";
 }
 export interface AudioElement extends Partial<HTMLAudioElement> {
 	autoplay?: boolean;
@@ -406,7 +465,11 @@ export interface AudioElement extends Partial<HTMLAudioElement> {
 	src?: string;
 	role?: "application";
 }
-export interface ImgElement extends Partial<HTMLImageElement> {
+export interface ImgElement
+	extends Omit<
+		Partial<HTMLImageElement>,
+		["align", "border", "hspace", "longdesc", "name", "vspace"]
+	> {
 	alt: string;
 	loading: "lazy" | "eager" | "auto";
 	src: string;
@@ -418,15 +481,7 @@ export interface ImgElement extends Partial<HTMLImageElement> {
 	width: number;
 	ismap?: boolean;
 	usemap?: string;
-	referrerpolicy?:
-		| "no-referrer"
-		| "no-referrer-when-downgrade"
-		| "origin"
-		| "origin-when-cross-origin"
-		| "same-origin"
-		| "strict-origin"
-		| "strict-origin-when-cross-origin"
-		| "unsafe-url";
+	referrerpolicy?: ReferrerPolicy;
 	sizes?: string;
 	srcset?: string;
 	roles?:
@@ -448,10 +503,10 @@ export interface ImgElement extends Partial<HTMLImageElement> {
 		| "treeitem"
 		| "none";
 }
-export interface MapElement extends Ommit<Partial<HTMLMapElement>, "role"> {
+export interface MapElement extends Omit<Partial<HTMLMapElement>, "role"> {
 	name: string;
 }
-export interface TrackElement extends Ommit<Partial<HTMLTrackElement>, "role"> {
+export interface TrackElement extends Omit<Partial<HTMLTrackElement>, "role"> {
 	default?: boolean;
 	kind: "subtitles" | "captions" | "descriptions" | "chapters" | "metadata";
 	label?: string;
@@ -474,6 +529,413 @@ export interface VideoElement extends Partial<HTMLVideoElement> {
 	src?: string;
 	width: number;
 	role?: "application";
+}
+export interface IframeElement extends Partial<HTMLIFrameElement> {
+	title: string;
+	src: string;
+	height?: number;
+	width?: number;
+	loading?: "lazy" | "eager";
+	name?: string;
+	referrerpolicy?: ReferrerPolicy;
+	sandbox?:
+		| "allow-downloads"
+		| "allow-forms"
+		| "allow-modals"
+		| "allow-orientation-lock"
+		| "allow-pointer-lock"
+		| "allow-popups"
+		| "allow-popups-to-escape-sandbox"
+		| "allow-presentation"
+		| "allow-same-origin"
+		| "allow-scripts"
+		| "allow-top-navigation"
+		| "allow-top-navigation-by-user-activation"
+		| "allow-top-navigation-to-custom-protocols";
+	srcdoc?: string;
+	role?: "application" | "document" | "img" | "none" | "presentation";
+}
+export interface ObjectElement extends Partial<HTMLObjectElement> {
+	data: string;
+	form?: string;
+	height?: number;
+	name?: string;
+	type?: string;
+	width?: number;
+	roles?: "application" | "document" | "img";
+}
+export interface PictureElement
+	extends Omit<Partial<HTMLPictureElement>, "role"> {}
+export interface SourceElement
+	extends Omit<Partial<HTMLSourceElement>, "role"> {
+	type?: string;
+	src: string;
+	srcset?: string;
+	sizes?: string;
+	media?: string;
+	height?: number;
+	width?: number;
+}
+export interface SVGElement extends Partial<HTMLOrSVGElement> {
+	role?: "img" | "presentation" | "none";
+	height?: number;
+	preserveAspectRatio?: string;
+	viewBox?: string;
+	width?: number;
+	x?: number;
+	y?: number;
+}
+export interface MathElement extends Omit<Partial<HTMLElement>, "role"> {
+	display: "block" | "inline";
+}
+export interface CanvasElement extends Partial<HTMLCanvasElement> {
+	role?: AriaRole;
+	height?: number;
+	width?: number;
+}
+export interface NoScriptElement extends Omit<Partial<HTMLElement>, "role"> {}
+export interface ScriptElement
+	extends Omit<Partial<HTMLScriptElement>, "role"> {
+	async?: boolean;
+	crossorigin?: "anonymous" | "use-credentials";
+	defer?: boolean;
+	fetchpriority?: "auto" | "high" | "low";
+	integrity?: string;
+	nomodule?: boolean;
+	nonce?: string;
+	referrerpolicy?: ReferrerPolicy;
+	src?: string;
+	type?: string;
+}
+export interface DelElement extends Partial<HTMLModElement> {
+	role?: ArialRole;
+	cite?: string;
+	datetime?: string;
+}
+export interface InsElement extends Partial<HTMLModElement> {
+	role?: ArialRole;
+	cite?: string;
+	datetime?: string;
+}
+export interface CaptionElement
+	extends Omit<Partial<HTMLTableCaptionElement>, ["role", "align"]> {}
+export interface ColElement
+	extends Omit<
+		Partial<HTMLTableColElement>,
+		["role", "align", "bgcolor", "char", "charoff", "valign", "width"]
+	> {
+	span?: number;
+}
+export interface ColgroupElement
+	extends Omit<
+		Partial<HTMLTableColElement>,
+		["role", "align", "bgcolor", "char", "charoff", "valign", "width"]
+	> {
+	span?: number;
+}
+export interface TableElement
+	extends Omit<
+		Partial<HTMLTableElement>,
+		[
+			"align",
+			"bgcolor",
+			"border",
+			"cellpadding",
+			"cellspacing",
+			"frame",
+			"rules",
+			"summary",
+			"width",
+		]
+	> {
+	role?: AriaRole;
+}
+export interface TBodyElement
+	extends Omit<
+		Partial<HTMLTableSectionElement>,
+		["align", "bgcolor", "char", "charoff", "valign"]
+	> {
+	role?: AriaRole;
+}
+export interface TdElement
+	extends Omit<
+		Partial<HTMLTableCellElement>,
+		[
+			"abbr",
+			"align",
+			"axis",
+			"bgcolor",
+			"char",
+			"charoff",
+			"height",
+			"scope",
+			"valign",
+			"width",
+		]
+	> {
+	colspan?: number;
+	rowspan?: number;
+	headers?: string;
+	role?: AriaRole;
+}
+export interface TFootElement
+	extends Omit<
+		Partial<HTMLTableSectionElement>,
+		["align", "bgcolor", "char", "charoff", "valign"]
+	> {
+	role?: AriaRole;
+}
+export interface ThElement
+	extends Omit<
+		Partial<HTMLTableCellElement>,
+		[
+			"align",
+			"axis",
+			"bgcolor",
+			"char",
+			"charoff",
+			"height",
+			"valign",
+			"width",
+		]
+	> {
+	abbr?: string;
+	colspan?: number;
+	headers?: string;
+	rowspan?: number;
+	scope?: "col" | "row" | "colgroup" | "rowgroup";
+	role?: AriaRole;
+}
+export interface THeadElement
+	extends Omit<
+		Partial<HTMLTableSectionElement>,
+		["align", "bgcolor", "char", "charoff", "valign"]
+	> {
+	role?: AriaRole;
+}
+export interface TrElement
+	extends Omit<
+		Partial<HTMLTableRowElement>,
+		["align", "bgcolor", "char", "charoff", "valign"]
+	> {
+	role?: AriaRole;
+}
+export interface ButtonElement extends Partial<HTMLButtonElement> {
+	autofocus?: boolean;
+	disabled?: boolean;
+	form?: string;
+	formaction?: string;
+	formenctype?:
+		| "application/x-www-form-urlencoded"
+		| "multipart/form-data"
+		| "text/plain";
+	formmethod?: "post" | "get" | "dialog";
+	formnovalidate?: boolean;
+	formtarget?: "_blank" | "_self" | "_parent" | "_top";
+	name?: string;
+	popovertarget?: string;
+	popovertargetaction?: "show" | "hide" | "toggle";
+	type: "button" | "submit" | "reset";
+	value?: string;
+	role?:
+		| "button"
+		| "checkbox"
+		| "combobox"
+		| "link"
+		| "menuitem"
+		| "menuitemcheckbox"
+		| "menuitemradio"
+		| "option"
+		| "radio"
+		| "switch"
+		| "tab";
+}
+export interface DataListElement
+	extends Omit<Partial<HTMLDataListElement>, "role"> {}
+export interface FieldSetElement extends Partial<HTMLFieldSetElement> {
+	disabled?: boolean;
+	form?: string;
+	name?: string;
+	role?: "group" | "radiogroup" | "none" | "presentation";
+}
+export interface FormElement
+	extends Omit<Partial<HTMLFormElement>, ["accept"]> {
+	"accept-charset"?: string;
+	autocapitalize?: string;
+	autocomplete?: string;
+	name: string;
+	rel?: string;
+	action?: string;
+	enctype?:
+		| "application/x-www-form-urlencoded"
+		| "multipart/form-data"
+		| "text/plain";
+	method?: "post" | "get" | "dialog";
+	novalidate?: boolean;
+	target?: "_blank" | "_self" | "_parent" | "_top";
+	role?: "form" | "search" | "none" | "presentation";
+}
+export interface InputElement extends Partial<HTMLInputElement> {
+	role?:
+		| "button"
+		| "checkbox"
+		| "textbox"
+		| "combobox"
+		| "spinbutton"
+		| "radio"
+		| "slider"
+		| "searchbox"
+		| "link"
+		| "menuitem"
+		| "menuitemcheckbox"
+		| "menuitemradio"
+		| "option"
+		| "switch"
+		| "tab";
+	type:
+		| "button"
+		| "checkbox"
+		| "color"
+		| "date"
+		| "datetime-local"
+		| "email"
+		| "file"
+		| "hidden"
+		| "image"
+		| "month"
+		| "number"
+		| "password"
+		| "radio"
+		| "range"
+		| "reset"
+		| "search"
+		| "submit"
+		| "tel"
+		| "text"
+		| "time"
+		| "url"
+		| "week";
+	accept?: string;
+	alt?: string;
+	autocalpitalize?: string;
+	autocomplete?: string;
+	capture?: boolean;
+	checked?: boolean;
+	dirname?: string;
+	disabled?: boolean;
+	form?: string;
+	formaction?: string;
+	formenctype?:
+		| "application/x-www-form-urlencoded"
+		| "multipart/form-data"
+		| "text/plain";
+	formmethod?: "post" | "get" | "dialog";
+	formnovalidate?: boolean;
+	formtarget?: "_blank" | "_self" | "_parent" | "_top";
+	height?: number;
+	list?: string;
+	max?: number;
+	maxlength?: number;
+	min?: number;
+	minlength?: number;
+	multiple?: boolean;
+	name: string;
+	pattern?: string;
+	placeholder?: string;
+	popovertarget?: string;
+	popovertargetaction?: string;
+	readonly?: boolean;
+	required: boolean;
+	size?: number;
+	src?: string;
+	step?: number;
+	value?: string;
+	width?: number;
+}
+export interface LabelElement extends Omit<Partial<HTMLLabelElement>, "role"> {
+	for: string;
+}
+export interface LegendElement
+	extends Omit<Partial<HTMLLegendElement>, "role"> {}
+export interface MeterElement extends Omit<Partial<HTMLMeterElement>, "role"> {
+	value: number;
+	min: number;
+	max: number;
+	low: number;
+	high: number;
+	optimum: number;
+	form?: string;
+}
+export interface OptGroupElement
+	extends Omit<Partial<HTMLOptGroupElement>, "role"> {
+	disabled?: boolean;
+	label: string;
+}
+export interface OptionElement
+	extends Omit<Partial<HTMLOptionElement>, "role"> {
+	disabled?: boolean;
+	label: string;
+	selected?: boolean;
+	value: string;
+}
+export interface OutPutElement extends Partial<HTMLOutputElement> {
+	for: string;
+	form?: string;
+	name: string;
+	role?: AriaRole;
+}
+export interface ProgressElement
+	extends Omit<Partial<HTMLProgressElement>, "role"> {
+	"aria-describedby"?: string;
+	"aria-busy"?: boolean;
+	max: number;
+	value: number;
+}
+export interface SelectElement extends Partial<HTMLSelectElement> {
+	role?: "combobox" | "listbox" | "menu";
+	autocomplete?: string;
+	autofocus?: boolean;
+	disabled?: boolean;
+	form?: string;
+	multiple?: boolean;
+	name: string;
+	required: boolean;
+	size?: number;
+}
+export interface TextAreaElement
+	extends Omit<Partial<HTMLTextAreaElement>, "role"> {
+	autocapitalize?: string;
+	autocomplete?: string;
+	autofocus?: boolean;
+	cols?: number;
+	dirname?: string;
+	disabled?: boolean;
+	form?: string;
+	maxlength?: number;
+	minlength?: number;
+	name: string;
+	placeholder?: string;
+	readonly?: boolean;
+	required: boolean;
+	rows?: number;
+	spellcheck?: boolean | "default";
+	wrap?: "hard" | "soft";
+}
+export interface DetailsElement
+	extends Omit<Partial<HTMLDetailsElement>, "role"> {
+	open?: boolean;
+}
+export interface DialogElement
+	extends Omit<Partial<HTMLDialogElement>, "tabindex"> {
+	role?: "dialog" | "alertdialog";
+}
+export interface SummaryElement extends Omit<Partial<HTMLElement>, "role"> {}
+export interface SlotElement extends Omit<Partial<HTMLSlotElement>, "role"> {
+	name?: string;
+}
+export interface TemplateElement
+	extends Omit<Partial<HTMLTemplateElement>, "role"> {
+	shadowrootmode?: "open" | "closed";
 }
 
 // ------------------------------------------------
@@ -560,12 +1022,54 @@ export declare namespace JSX {
 		track: TrackElement;
 		video: VideoElement;
 		// Embedded content
-		button: {
-			class?: string;
-			type: "button" | "submit" | "reset";
-			"aria-label": string;
-			[key: string]: string;
-		};
+		iframe: IframeElement;
+		object: ObjectElement;
+		picture: PictureElement;
+		portal: never; // experimental feature
+		source: SourceElement;
+		// SVG and MathML
+		svg: SVGElement;
+		math: MathElement;
+		// Scripting
+		canvas: CanvasElement;
+		noscript: NoScriptElement;
+		script: ScriptElement;
+		// Demarcating edits
+		del: DelElement;
+		ins: InsElement;
+		// Table content
+		caption: CaptionElement;
+		col: ColElement;
+		colgroup: ColgroupElement;
+		table: TableElement;
+		tbody: TBodyElement;
+		td: TdElement;
+		tfoot: TFootElement;
+		th: ThElement;
+		thead: THeadElement;
+		tr: TrElement;
+		// Forms
+		button: ButtonElement;
+		datalist: DataListElement;
+		fieldset: FieldSetElement;
+		form: FormElement;
+		input: InputElement;
+		label: LabelElement;
+		legend: LegendElement;
+		meter: MeterElement;
+		optgroup: OptGroupElement;
+		option: OptionElement;
+		output: OutPutElement;
+		progress: ProgressElement;
+		select: SelectElement;
+		textarea: TextAreaElement;
+		// Interactive elements
+		details: DetailsElement;
+		dialog: DialogElement;
+		summary: SummaryElement;
+		// Web Components
+		slot: SlotElement;
+		template: TemplateElement;
 		// depreciated elements
 		acronym: never;
 		big: never;
@@ -588,7 +1092,7 @@ export declare namespace JSX {
 		tt: never;
 		xmp: never;
 		// elements we dont want to support
-		base: never;
+		embed: never;
 	}
 }
 
