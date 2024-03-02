@@ -1,6 +1,6 @@
 {
 	"name": "@protodigital/ssrg-dom-strict",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"private": false,
 	"description": "SSRG DOM Strict is responsible for converting vanilla JSX/TSX into HTML.",
 	"repository": {

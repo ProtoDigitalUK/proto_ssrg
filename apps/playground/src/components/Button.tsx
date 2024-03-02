@@ -9,7 +9,11 @@ interface ButtonProps {
 
 const Button: SSRG.FC<ButtonProps> = (props) => {
 	return (
-		<button type="button" aria-label={`Open ${props?.data.foo} modal`}>
+		<button
+			class="w-full"
+			type="button"
+			aria-label={`Open ${props?.data.foo} modal`}
+		>
 			Click me - {props?.data.foo}
 			{props?.children}
 		</button>

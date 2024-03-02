@@ -102,21 +102,31 @@ export interface DefaultElement extends Partial<HTMLElement> {
 }
 
 export interface HtmlElement
-	extends Omit<Partial<HTMLHtmlElement>, ["role", "manifest", "version"]> {
+	extends Omit<Partial<HTMLHtmlElement>, "role" | "manifest" | "version"> {
 	lang: string;
 	dir: string;
 	xmlns?: string;
+	[key: string]: unknown;
 }
 export interface BaseElement extends Omit<Partial<HTMLBaseElement>, "role"> {
 	href?: string;
 	target?: "_blank" | "_self" | "_parent" | "_top";
+	[key: string]: unknown;
 }
 export interface HeadElement
-	extends Omit<Partial<HTMLHeadElement>, ["role", "profile"]> {}
+	extends Omit<Partial<HTMLHeadElement>, "role" | "profile"> {
+	[key: string]: unknown;
+}
 export interface LinkElement
 	extends Omit<
 		Partial<HTMLLinkElement>,
-		["role", "blocking", "disabled", "methods", "target", "charset", "rev"]
+		| "role"
+		| "blocking"
+		| "disabled"
+		| "methods"
+		| "target"
+		| "charset"
+		| "rev"
 	> {
 	rel?: string;
 	href?: string;
@@ -132,6 +142,7 @@ export interface LinkElement
 	sizes?: string;
 	title?: string;
 	type?: string;
+	[key: string]: unknown;
 }
 export interface MetaElement extends Omit<Partial<HTMLMetaElement>, "role"> {
 	charset?: string;
@@ -143,33 +154,38 @@ export interface MetaElement extends Omit<Partial<HTMLMetaElement>, "role"> {
 		| "x-ua-compatible"
 		| "refresh";
 	name?: string;
+	[key: string]: unknown;
 }
 export interface StyleElement
-	extends Omit<Partial<HTMLStyleElement>, ["role", "blocking", "type"]> {
+	extends Omit<Partial<HTMLStyleElement>, "role" | "blocking" | "type"> {
 	media?: string;
 	nonce?: string;
 	title?: string;
+	[key: string]: unknown;
 }
-export interface TitleElement extends Omit<Partial<HTMLTitleElement>, "role"> {}
+export interface TitleElement extends Omit<Partial<HTMLTitleElement>, "role"> {
+	[key: string]: unknown;
+}
 export interface BodyElement
 	extends Omit<
 		Partial<HTMLBodyElement>,
-		[
-			"role",
-			"alink",
-			"background",
-			"bgcolor",
-			"bottommargin",
-			"leftmargin",
-			"link",
-			"rightmargin",
-			"text",
-			"topmargin",
-			"vlink",
-		]
-	> {}
+		| "role"
+		| "alink"
+		| "background"
+		| "bgcolor"
+		| "bottommargin"
+		| "leftmargin"
+		| "link"
+		| "rightmargin"
+		| "text"
+		| "topmargin"
+		| "vlink"
+	> {
+	[key: string]: unknown;
+}
 export interface AddressElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface ArticleElement extends Partial<HTMLElement> {
 	role?:
@@ -181,6 +197,7 @@ export interface ArticleElement extends Partial<HTMLElement> {
 		| "none"
 		| "presentation"
 		| "region";
+	[key: string]: unknown;
 }
 export interface AsideElement extends Partial<HTMLElement> {
 	role?:
@@ -191,24 +208,31 @@ export interface AsideElement extends Partial<HTMLElement> {
 		| "presentation"
 		| "region"
 		| "search";
+	[key: string]: unknown;
 }
 export interface FooterElement extends Partial<HTMLElement> {
 	role?: "contentinfo" | "generic" | "group" | "presentation" | "none";
+	[key: string]: unknown;
 }
 export interface HeaderElement extends Partial<HTMLElement> {
 	role?: "banner" | "generic" | "group" | "presentation" | "none";
+	[key: string]: unknown;
 }
 export interface HeadingElement extends Partial<HTMLHeadingElement> {
 	role?: "heading" | "tab" | "presentation" | "none";
+	[key: string]: unknown;
 }
 export interface HgroupElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface MainElement extends Omit<Partial<HTMLElement>, "role"> {
-	// Added to nudge you to add skip to content link - needs clearer guidance
-	id: string;
+	id?: string;
+	[key: string]: unknown;
 }
-export interface NavElement extends Omit<Partial<HTMLElement>, "role"> {}
+export interface NavElement extends Omit<Partial<HTMLElement>, "role"> {
+	[key: string]: unknown;
+}
 export interface SectionElement extends Partial<HTMLElement> {
 	role?:
 		| "alert"
@@ -230,32 +254,43 @@ export interface SectionElement extends Partial<HTMLElement> {
 		| "search"
 		| "status"
 		| "tabpanel";
+	[key: string]: unknown;
 }
 export interface SearchElement extends Partial<HTMLElement> {
 	role?: "form" | "group" | "none" | "presentation" | "region" | "search";
+	[key: string]: unknown;
 }
 export interface BlockkQuoteElement extends Partial<HTMLQuoteElement> {
 	cite: string;
-	role?: ArialRole;
+	role?: AriaRole;
+	[key: string]: unknown;
 }
-export interface DdElement extends Omit<Partial<HTMLElement>, "role"> {}
+export interface DdElement extends Omit<Partial<HTMLElement>, "role"> {
+	[key: string]: unknown;
+}
 export interface DivElement extends Partial<HTMLDivElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface DlElement extends Partial<HTMLDListElement> {
 	role?: "group" | "list" | "none" | "presentation";
+	[key: string]: unknown;
 }
 export interface DtElement extends Partial<HTMLElement> {
 	role?: "listitem";
+	[key: string]: unknown;
 }
 export interface FigCaptionElement extends Partial<HTMLElement> {
 	role?: "group" | "none" | "presentation";
+	[key: string]: unknown;
 }
 export interface FigureElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface HrElement extends Partial<HTMLHRElement> {
 	role?: "seperator" | "presentation" | "none";
+	[key: string]: unknown;
 }
 export interface LiElement extends Partial<HTMLLIElement> {
 	value?: number;
@@ -271,6 +306,7 @@ export interface LiElement extends Partial<HTMLLIElement> {
 		| "separator"
 		| "tab"
 		| "treeitem";
+	[key: string]: unknown;
 }
 export interface MenuElement extends Partial<HTMLMenuElement> {
 	role?:
@@ -286,6 +322,7 @@ export interface MenuElement extends Partial<HTMLMenuElement> {
 		| "tablist"
 		| "toolbar"
 		| "tree";
+	[key: string]: unknown;
 }
 export interface OlElement extends Partial<HTMLOListElement> {
 	reversed?: boolean;
@@ -304,15 +341,18 @@ export interface OlElement extends Partial<HTMLOListElement> {
 		| "tablist"
 		| "toolbar"
 		| "tree";
+	[key: string]: unknown;
 }
 export interface PElement extends Partial<HTMLParagraphElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface PreElement extends Partial<HTMLPreElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface UlElement
-	extends Omit<Partial<HTMLUListElement>, ["compact", "type"]> {
+	extends Omit<Partial<HTMLUListElement>, "compact" | "type"> {
 	role?:
 		| "list"
 		| "directory"
@@ -326,16 +366,16 @@ export interface UlElement
 		| "tablist"
 		| "toolbar"
 		| "tree";
+	[key: string]: unknown;
 }
 export interface AElement
 	extends Omit<
 		Partial<HTMLAnchorElement>,
-		["charset", "coords", "name", "rev", "shape"]
+		"charset" | "coords" | "name" | "rev" | "shape"
 	> {
 	href: string;
 	target: "_blank" | "_self" | "_parent" | "_top";
-	// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#security_and_privacy
-	rel: string;
+	rel?: string;
 	download?: string;
 	hreflang?: string;
 	ping?: string;
@@ -353,6 +393,7 @@ export interface AElement
 		| "switch"
 		| "tab"
 		| "treeitem";
+	[key: string]: unknown;
 }
 export interface AbbrElement extends Partial<HTMLElement> {
 	/**
@@ -360,86 +401,112 @@ export interface AbbrElement extends Partial<HTMLElement> {
 	 */
 	title: string;
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface BdiElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface BdoElement extends Partial<HTMLElement> {
 	dir: "ltr" | "rtl";
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface BrElement extends Partial<HTMLBRElement> {
 	role?: "none" | "presentation";
+	[key: string]: unknown;
 }
 export interface CiteElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface DataElement extends Partial<HTMLElement> {
 	value: string;
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface DfnElement extends Partial<HTMLElement> {
 	title?: string;
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface EmElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface IElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface KbdElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface MarkElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface QElement extends Partial<HTMLQuoteElement> {
 	cite: string;
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface RpElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface RtElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface RubyElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface SElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface SampElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface SmallElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface SpanElement extends Partial<HTMLSpanElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface StrongElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface SubElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface SupElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface TimeElement extends Partial<HTMLElement> {
 	datetime: string;
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface UElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface VarElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface WbrElement extends Partial<HTMLElement> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface AreaElement extends Omit<Partial<HTMLAreaElement>, "role"> {
 	alt: string;
@@ -449,9 +516,10 @@ export interface AreaElement extends Omit<Partial<HTMLAreaElement>, "role"> {
 	hreflang?: string;
 	ping?: string;
 	referrerpolicy?: ReferrerPolicy;
-	rel: string;
+	rel?: string;
 	shape: "rect" | "circle" | "poly" | "default";
 	target: "_blank" | "_self" | "_parent" | "_top";
+	[key: string]: unknown;
 }
 export interface AudioElement extends Partial<HTMLAudioElement> {
 	autoplay?: boolean;
@@ -464,11 +532,12 @@ export interface AudioElement extends Partial<HTMLAudioElement> {
 	preload?: "none" | "metadata" | "auto";
 	src?: string;
 	role?: "application";
+	[key: string]: unknown;
 }
 export interface ImgElement
 	extends Omit<
 		Partial<HTMLImageElement>,
-		["align", "border", "hspace", "longdesc", "name", "vspace"]
+		"align" | "border" | "hspace" | "longdesc" | "name" | "vspace"
 	> {
 	alt: string;
 	loading: "lazy" | "eager" | "auto";
@@ -502,9 +571,11 @@ export interface ImgElement
 		| "tab"
 		| "treeitem"
 		| "none";
+	[key: string]: unknown;
 }
 export interface MapElement extends Omit<Partial<HTMLMapElement>, "role"> {
 	name: string;
+	[key: string]: unknown;
 }
 export interface TrackElement extends Omit<Partial<HTMLTrackElement>, "role"> {
 	default?: boolean;
@@ -512,6 +583,7 @@ export interface TrackElement extends Omit<Partial<HTMLTrackElement>, "role"> {
 	label?: string;
 	src: string;
 	srclang: string;
+	[key: string]: unknown;
 }
 export interface VideoElement extends Partial<HTMLVideoElement> {
 	autoplay?: boolean;
@@ -529,6 +601,7 @@ export interface VideoElement extends Partial<HTMLVideoElement> {
 	src?: string;
 	width: number;
 	role?: "application";
+	[key: string]: unknown;
 }
 export interface IframeElement extends Partial<HTMLIFrameElement> {
 	title: string;
@@ -554,6 +627,7 @@ export interface IframeElement extends Partial<HTMLIFrameElement> {
 		| "allow-top-navigation-to-custom-protocols";
 	srcdoc?: string;
 	role?: "application" | "document" | "img" | "none" | "presentation";
+	[key: string]: unknown;
 }
 export interface ObjectElement extends Partial<HTMLObjectElement> {
 	data: string;
@@ -563,9 +637,12 @@ export interface ObjectElement extends Partial<HTMLObjectElement> {
 	type?: string;
 	width?: number;
 	roles?: "application" | "document" | "img";
+	[key: string]: unknown;
 }
 export interface PictureElement
-	extends Omit<Partial<HTMLPictureElement>, "role"> {}
+	extends Omit<Partial<HTMLPictureElement>, "role"> {
+	[key: string]: unknown;
+}
 export interface SourceElement
 	extends Omit<Partial<HTMLSourceElement>, "role"> {
 	type?: string;
@@ -575,6 +652,7 @@ export interface SourceElement
 	media?: string;
 	height?: number;
 	width?: number;
+	[key: string]: unknown;
 }
 export interface SVGElement extends Partial<HTMLOrSVGElement> {
 	role?: "img" | "presentation" | "none";
@@ -584,16 +662,21 @@ export interface SVGElement extends Partial<HTMLOrSVGElement> {
 	width?: number;
 	x?: number;
 	y?: number;
+	[key: string]: unknown;
 }
 export interface MathElement extends Omit<Partial<HTMLElement>, "role"> {
 	display: "block" | "inline";
+	[key: string]: unknown;
 }
 export interface CanvasElement extends Partial<HTMLCanvasElement> {
 	role?: AriaRole;
 	height?: number;
 	width?: number;
+	[key: string]: unknown;
 }
-export interface NoScriptElement extends Omit<Partial<HTMLElement>, "role"> {}
+export interface NoScriptElement extends Omit<Partial<HTMLElement>, "role"> {
+	[key: string]: unknown;
+}
 export interface ScriptElement
 	extends Omit<Partial<HTMLScriptElement>, "role"> {
 	async?: boolean;
@@ -606,98 +689,103 @@ export interface ScriptElement
 	referrerpolicy?: ReferrerPolicy;
 	src?: string;
 	type?: string;
+	[key: string]: unknown;
 }
 export interface DelElement extends Partial<HTMLModElement> {
-	role?: ArialRole;
+	role?: AriaRole;
 	cite?: string;
 	datetime?: string;
+	[key: string]: unknown;
 }
 export interface InsElement extends Partial<HTMLModElement> {
-	role?: ArialRole;
+	role?: AriaRole;
 	cite?: string;
 	datetime?: string;
+	[key: string]: unknown;
 }
 export interface CaptionElement
-	extends Omit<Partial<HTMLTableCaptionElement>, ["role", "align"]> {}
+	extends Omit<Partial<HTMLTableCaptionElement>, "role" | "align"> {
+	[key: string]: unknown;
+}
 export interface ColElement
 	extends Omit<
 		Partial<HTMLTableColElement>,
-		["role", "align", "bgcolor", "char", "charoff", "valign", "width"]
+		"role" | "align" | "bgcolor" | "char" | "charoff" | "valign" | "width"
 	> {
 	span?: number;
+	[key: string]: unknown;
 }
 export interface ColgroupElement
 	extends Omit<
 		Partial<HTMLTableColElement>,
-		["role", "align", "bgcolor", "char", "charoff", "valign", "width"]
+		"role" | "align" | "bgcolor" | "char" | "charoff" | "valign" | "width"
 	> {
 	span?: number;
+	[key: string]: unknown;
 }
 export interface TableElement
 	extends Omit<
 		Partial<HTMLTableElement>,
-		[
-			"align",
-			"bgcolor",
-			"border",
-			"cellpadding",
-			"cellspacing",
-			"frame",
-			"rules",
-			"summary",
-			"width",
-		]
+		| "align"
+		| "bgcolor"
+		| "border"
+		| "cellpadding"
+		| "cellspacing"
+		| "frame"
+		| "rules"
+		| "summary"
+		| "width"
 	> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface TBodyElement
 	extends Omit<
 		Partial<HTMLTableSectionElement>,
-		["align", "bgcolor", "char", "charoff", "valign"]
+		"align" | "bgcolor" | "char" | "charoff" | "valign"
 	> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface TdElement
 	extends Omit<
 		Partial<HTMLTableCellElement>,
-		[
-			"abbr",
-			"align",
-			"axis",
-			"bgcolor",
-			"char",
-			"charoff",
-			"height",
-			"scope",
-			"valign",
-			"width",
-		]
+		| "abbr"
+		| "align"
+		| "axis"
+		| "bgcolor"
+		| "char"
+		| "charoff"
+		| "height"
+		| "scope"
+		| "valign"
+		| "width"
 	> {
 	colspan?: number;
 	rowspan?: number;
 	headers?: string;
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface TFootElement
 	extends Omit<
 		Partial<HTMLTableSectionElement>,
-		["align", "bgcolor", "char", "charoff", "valign"]
+		"align" | "bgcolor" | "char" | "charoff" | "valign"
 	> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface ThElement
 	extends Omit<
 		Partial<HTMLTableCellElement>,
-		[
-			"align",
-			"axis",
-			"bgcolor",
-			"char",
-			"charoff",
-			"height",
-			"valign",
-			"width",
-		]
+		| "align"
+		| "axis"
+		| "bgcolor"
+		| "char"
+		| "charoff"
+		| "height"
+		| "valign"
+		| "width"
 	> {
 	abbr?: string;
 	colspan?: number;
@@ -705,22 +793,26 @@ export interface ThElement
 	rowspan?: number;
 	scope?: "col" | "row" | "colgroup" | "rowgroup";
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface THeadElement
 	extends Omit<
 		Partial<HTMLTableSectionElement>,
-		["align", "bgcolor", "char", "charoff", "valign"]
+		"align" | "bgcolor" | "char" | "charoff" | "valign"
 	> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface TrElement
 	extends Omit<
 		Partial<HTMLTableRowElement>,
-		["align", "bgcolor", "char", "charoff", "valign"]
+		"align" | "bgcolor" | "char" | "charoff" | "valign"
 	> {
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface ButtonElement extends Partial<HTMLButtonElement> {
+	[key: string]: unknown;
 	autofocus?: boolean;
 	disabled?: boolean;
 	form?: string;
@@ -749,17 +841,20 @@ export interface ButtonElement extends Partial<HTMLButtonElement> {
 		| "radio"
 		| "switch"
 		| "tab";
+	[key: string]: unknown;
 }
 export interface DataListElement
-	extends Omit<Partial<HTMLDataListElement>, "role"> {}
+	extends Omit<Partial<HTMLDataListElement>, "role"> {
+	[key: string]: unknown;
+}
 export interface FieldSetElement extends Partial<HTMLFieldSetElement> {
 	disabled?: boolean;
 	form?: string;
 	name?: string;
 	role?: "group" | "radiogroup" | "none" | "presentation";
+	[key: string]: unknown;
 }
-export interface FormElement
-	extends Omit<Partial<HTMLFormElement>, ["accept"]> {
+export interface FormElement extends Omit<Partial<HTMLFormElement>, "accept"> {
 	"accept-charset"?: string;
 	autocapitalize?: string;
 	autocomplete?: string;
@@ -774,6 +869,7 @@ export interface FormElement
 	novalidate?: boolean;
 	target?: "_blank" | "_self" | "_parent" | "_top";
 	role?: "form" | "search" | "none" | "presentation";
+	[key: string]: unknown;
 }
 export interface InputElement extends Partial<HTMLInputElement> {
 	role?:
@@ -851,12 +947,16 @@ export interface InputElement extends Partial<HTMLInputElement> {
 	step?: number;
 	value?: string;
 	width?: number;
+	[key: string]: unknown;
 }
 export interface LabelElement extends Omit<Partial<HTMLLabelElement>, "role"> {
 	for: string;
+	[key: string]: unknown;
 }
 export interface LegendElement
-	extends Omit<Partial<HTMLLegendElement>, "role"> {}
+	extends Omit<Partial<HTMLLegendElement>, "role"> {
+	[key: string]: unknown;
+}
 export interface MeterElement extends Omit<Partial<HTMLMeterElement>, "role"> {
 	value: number;
 	min: number;
@@ -865,11 +965,13 @@ export interface MeterElement extends Omit<Partial<HTMLMeterElement>, "role"> {
 	high: number;
 	optimum: number;
 	form?: string;
+	[key: string]: unknown;
 }
 export interface OptGroupElement
 	extends Omit<Partial<HTMLOptGroupElement>, "role"> {
 	disabled?: boolean;
 	label: string;
+	[key: string]: unknown;
 }
 export interface OptionElement
 	extends Omit<Partial<HTMLOptionElement>, "role"> {
@@ -877,12 +979,14 @@ export interface OptionElement
 	label: string;
 	selected?: boolean;
 	value: string;
+	[key: string]: unknown;
 }
 export interface OutPutElement extends Partial<HTMLOutputElement> {
 	for: string;
 	form?: string;
 	name: string;
 	role?: AriaRole;
+	[key: string]: unknown;
 }
 export interface ProgressElement
 	extends Omit<Partial<HTMLProgressElement>, "role"> {
@@ -890,6 +994,7 @@ export interface ProgressElement
 	"aria-busy"?: boolean;
 	max: number;
 	value: number;
+	[key: string]: unknown;
 }
 export interface SelectElement extends Partial<HTMLSelectElement> {
 	role?: "combobox" | "listbox" | "menu";
@@ -901,6 +1006,7 @@ export interface SelectElement extends Partial<HTMLSelectElement> {
 	name: string;
 	required: boolean;
 	size?: number;
+	[key: string]: unknown;
 }
 export interface TextAreaElement
 	extends Omit<Partial<HTMLTextAreaElement>, "role"> {
@@ -920,22 +1026,29 @@ export interface TextAreaElement
 	rows?: number;
 	spellcheck?: boolean | "default";
 	wrap?: "hard" | "soft";
+	[key: string]: unknown;
 }
 export interface DetailsElement
 	extends Omit<Partial<HTMLDetailsElement>, "role"> {
 	open?: boolean;
+	[key: string]: unknown;
 }
 export interface DialogElement
 	extends Omit<Partial<HTMLDialogElement>, "tabindex"> {
 	role?: "dialog" | "alertdialog";
+	[key: string]: unknown;
 }
-export interface SummaryElement extends Omit<Partial<HTMLElement>, "role"> {}
+export interface SummaryElement extends Omit<Partial<HTMLElement>, "role"> {
+	[key: string]: unknown;
+}
 export interface SlotElement extends Omit<Partial<HTMLSlotElement>, "role"> {
 	name?: string;
+	[key: string]: unknown;
 }
 export interface TemplateElement
 	extends Omit<Partial<HTMLTemplateElement>, "role"> {
 	shadowrootmode?: "open" | "closed";
+	[key: string]: unknown;
 }
 
 // ------------------------------------------------
